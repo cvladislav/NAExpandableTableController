@@ -128,13 +128,13 @@ public class NAExpandableTableController: NSObject, UITableViewDataSource, UITab
             }
             
             delegate?.expandableTableView?(tableView, didSelectTitleCellInSection: indexPath.section)
+            
+            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
         } else {
             // Need to decrement indexPath.row by 1 because the first row is the title cell
             let rowIndexPath = NSIndexPath(forRow: indexPath.row - 1, inSection: indexPath.section)
             delegate?.expandableTableView?(tableView, didSelectRowAtIndexPath: rowIndexPath)
         }
-        
-        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
     }
     
     internal func expandSection(tableView: UITableView, section: Int) {
